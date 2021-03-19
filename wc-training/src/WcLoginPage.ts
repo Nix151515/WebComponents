@@ -24,10 +24,23 @@ export class WcLoginPage extends LitElement {
         form {
             width: 25%;
             margin: auto;
+            padding-bottom: 50px;
         }
 
         lion-input {
-            margin-top: 20px
+            margin-top: 20px;
+        }
+
+        [data-tag-name="lion-validation-feedback"] {
+            font-style: italic;
+            font-size: 0.9em;
+            color: red;
+        }
+
+        #doggo {
+            height: 250px;
+            display: block;
+            margin: auto;
         }
     `;
 
@@ -64,6 +77,8 @@ export class WcLoginPage extends LitElement {
 
             </form>
         </lion-form>
+
+        <img id="doggo" src='../assets/doggo-of-security.jpg'>
     `;
     }
 }

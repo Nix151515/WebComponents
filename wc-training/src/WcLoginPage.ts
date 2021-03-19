@@ -1,8 +1,17 @@
 import { LitElement, html, css, property } from 'lit-element';
 import '@lion/form/define';
 import '@lion/input/define';
+import '@lion/button/define'
+import '@lion/checkbox-group/define';
 
 import { Required, EqualsLength } from '@lion/form-core';
+import { LionCheckboxGroup } from '@lion/checkbox-group';
+
+interface LoginPayload {
+    orangeBankId: string,
+    cardNumber: string,
+    saveSession?: boolean
+}
 
 export class WcLoginPage extends LitElement {
     @property({ type: String }) welcomeMessage = 'Welcome to the page, hope you like it 👀';
@@ -50,8 +59,26 @@ export class WcLoginPage extends LitElement {
         }
     }
 
-    render() {
+    login(event: MouseEvent) {
+        const checkboxGr = <LionCheckboxGroup>this.shadowRoot?.querySelector("#loginCheckbox");
 
+        // TODO: check if the form is valid
+        if (!true)
+            return
+
+        // TODO: enforce only alphanumeric characters
+        let payload: LoginPayload = {
+            orangeBankId: '',
+            cardNumber: '',
+            saveSession: checkboxGr.modelValue.includes("Yes")
+        };
+
+        console.log(payload)
+
+        /* Send */
+    }
+
+    render() {
         return html`
         <h3> ${this.welcomeMessage} </h3>
         <h5> ${this.loginMessage} </h5>
@@ -61,20 +88,25 @@ export class WcLoginPage extends LitElement {
                 <lion-input id="phoneNumber" name="phoneNumber" label="Phone Number" placeholder="+04xx-xxx-xxx"
                     .modelValue=${''}
                     .validators=${[
-                        new Required('', this.setCustomMessage(this.requiredValidatorMessage))
-                    ]}
+                new Required('', this.setCustomMessage(this.requiredValidatorMessage))
+            ]}
                 >
                 </lion-input>
 
                 <lion-input id="userId" name="userId" label="User ID" placeholder="xxxx" help-text="The last 4 digits of the card number"
                     .modelValue=${''} 
                     .validators=${[
-                        new Required('', this.setCustomMessage(this.requiredValidatorMessage)),
-                        new EqualsLength(4, this.setCustomMessage(this.equals4ValidatorMessage))
-                    ]}
+                new Required('', this.setCustomMessage(this.requiredValidatorMessage)),
+                new EqualsLength(4, this.setCustomMessage(this.equals4ValidatorMessage))
+            ]}
                 >
                 </lion-input>
 
+                <lion-checkbox-group name="saveSession" id="loginCheckbox">
+                    <lion-checkbox label="Save session" .choiceValue=${'Yes'}></lion-checkbox>
+                </lion-checkbox-group>
+
+                <lion-button @click="${(ev: MouseEvent) => this.login(ev)}">Login</lion-button>
             </form>
         </lion-form>
 

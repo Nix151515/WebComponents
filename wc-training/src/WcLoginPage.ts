@@ -27,13 +27,10 @@ export class WcLoginPage extends LitElement {
     @property({ type: String }) requiredValidatorMessage = 'This field is required';
     @property({ type: String }) equals16ValidatorMessage = 'This field should have exactly 16 characters';
     @property({ type: String }) alphanumericValidatorMessage = 'Please insert only alphanumeric characters';
-
-
-
     static styles = css`
 
         h3 {
-            margin-bottom: 40px;
+            margin-bottom: 70px;
             text-align: center;
         }
 
@@ -42,17 +39,28 @@ export class WcLoginPage extends LitElement {
         }
 
         form {
-            width: 25%;
+            width: fit-content;
             margin: auto;
-            padding-bottom: 50px;
         }
 
         lion-input {
             margin-top: 20px;
         }
 
+        input.form-control {
+            height: 20px;
+            border-width: 1px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
         lion-checkbox-group {
             margin-top: 10px;
+        }
+
+        lion-checkbox {
+            display: flex;
+            align-items: center;
         }
 
         [data-tag-name="lion-validation-feedback"] {
@@ -61,16 +69,15 @@ export class WcLoginPage extends LitElement {
             color: red;
         }
 
-        #doggo {
-            height: 250px;
-            display: block;
-            margin: auto;
-        }
+        // #doggo {
+        //     height: 250px;
+        //     display: block;
+        //     margin: auto;
+        // }
 
         #loginButton {
             margin-top: 10px;
             display: block;
-            border: 10px;
             background: #fd7e14
         }
 
@@ -120,7 +127,7 @@ export class WcLoginPage extends LitElement {
     }
 
     isFormValid() {
-        /* TODO : Maybe a spinner? */
+        /* TODO : Maybe a spinner? Mm, not now */
 
         const orangeBankInput = <LionInput>this.shadowRoot?.querySelector('#orangeBankId');
         const cardNumberInput = <LionInput>this.shadowRoot?.querySelector('#cardNumber');
@@ -170,7 +177,9 @@ export class WcLoginPage extends LitElement {
             </form>
         </lion-form>
 
-        <img id="doggo" src='../assets/doggo-of-security.jpg'>
     `;
     }
 }
+
+
+// <img id="doggo" src='../assets/doggo-of-security.jpg'>

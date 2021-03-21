@@ -2,7 +2,6 @@ import { LitElement, html, css } from 'lit-element';
 
 /* Looks like app's main component */
 export class WcTraining extends LitElement {
-
   
   static styles = css`
     header {
@@ -29,6 +28,7 @@ export class WcTraining extends LitElement {
     #footerContent {
       margin-left: 15px;
     }
+
     #doge {
       height: 50px;
       margin: 5px 5px 5px;
@@ -54,9 +54,11 @@ export class WcTraining extends LitElement {
     <wc-login id="loginComponent"></wc-login>
 
     <footer>
-    <div id="footerContent">
-      <p>Author: Nicolae State<br>
-      <p>Created using <a href="https://lion-web.netlify.app/guides/">Lion Web Components </a></p>
+      <div id="footerContent">
+        <p>Author: Nicolae State<br>
+        <p>Created using 
+          <a href="https://lion-web.netlify.app/guides/">Lion Web Components </a>
+        </p>
       </div>
     </footer>
     `;

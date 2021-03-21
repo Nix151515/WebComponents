@@ -149,9 +149,9 @@ export class WcLoginPage extends LitElement {
                     .modelValue=${''}
                     @model-value-changed=${() => this.checkFormValidation()}
                     .validators=${[
-                new Required('', this.setCustomMessage(this.requiredValidatorMessage)),
-                new Pattern(/^[a-z0-9]+$/i, this.setCustomMessage(this.alphanumericValidatorMessage))
-            ]}
+                    new Required('', this.setCustomMessage(this.requiredValidatorMessage)),
+                    new Pattern(/^[a-z0-9]+$/i, this.setCustomMessage(this.alphanumericValidatorMessage))
+                ]}
                 >
                 </lion-input>
 
@@ -159,10 +159,10 @@ export class WcLoginPage extends LitElement {
                     .modelValue=${''}
                     @model-value-changed=${() => this.checkFormValidation()}
                     .validators=${[
-                new Required('', this.setCustomMessage(this.requiredValidatorMessage)),
-                new EqualsLength(16, this.setCustomMessage(this.equals16ValidatorMessage)),
-                new Pattern(/^[a-z0-9]+$/i, this.setCustomMessage(this.alphanumericValidatorMessage))
-            ]}
+                    new Required('', this.setCustomMessage(this.requiredValidatorMessage)),
+                    new EqualsLength(16, this.setCustomMessage(this.equals16ValidatorMessage)),
+                    new Pattern(/^[a-z0-9]+$/i, this.setCustomMessage(this.alphanumericValidatorMessage))
+                ]}
                 >
                 </lion-input>
 
@@ -173,9 +173,8 @@ export class WcLoginPage extends LitElement {
                 <lion-button id="loginButton" disabled @click="${() => this.login()}">Login</lion-button>
             </form>
         </lion-form>
-    ` ;
+        ` ;
         return this.isLoggedIn ? dashboard : login;
-
     }
 
 }

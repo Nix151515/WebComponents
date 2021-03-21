@@ -36,7 +36,7 @@ export class WcDashboard extends LitElement {
                 <p> You have been visited by the doggo of security.</p>
                 <p> Doggo is here to check that you are authenticated.</p>
                 <p> "Safe navigation", says doggo </p>
-                <lion-button id="doggoButton" @click="${() => this.goToLogin()}">Thank you, doggo</lion-button>
+                <lion-button id="doggoButton" @click="${() => this.goToLogin()}">Thank you, doggo !</lion-button>
             </div>
         `;
         const login = html`<wc-login><wc-login>`;

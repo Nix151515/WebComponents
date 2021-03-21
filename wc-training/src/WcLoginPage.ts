@@ -22,11 +22,13 @@ interface LoginPayload {
 // }
 
 export class WcLoginPage extends LitElement {
-    @property({ type: String }) welcomeMessage = 'Welcome to the page, hope you like it 👀';
+    @property({ type: String }) welcomeMessage = 'Welcome to the login page 👀';
     @property({ type: String }) loginMessage = 'You have to login to see more content';
     @property({ type: String }) requiredValidatorMessage = 'This field is required';
     @property({ type: String }) equals16ValidatorMessage = 'This field should have exactly 16 characters';
     @property({ type: String }) alphanumericValidatorMessage = 'Please insert only alphanumeric characters';
+    @property({ type: String }) isLoggedIn = false;
+
     static styles = css`
 
         h3 {
@@ -69,21 +71,16 @@ export class WcLoginPage extends LitElement {
             color: red;
         }
 
-        // #doggo {
-        //     height: 250px;
-        //     display: block;
-        //     margin: auto;
-        // }
-
         #loginButton {
             margin-top: 10px;
             display: block;
-            background: #fd7e14
+            background: #fd7e14;
+            cursor: pointer;
         }
 
         #loginButton[disabled] {
             color: #767676d9;
-            background: lightgray
+            background: lightgray;
         }
 
     `;
@@ -91,12 +88,10 @@ export class WcLoginPage extends LitElement {
     /* Might use these callbacks later */
     connectedCallback() {
         super.connectedCallback();
-        console.log('in')
     }
 
     disconnectedCallback() {
         super.disconnectedCallback();
-        console.log('out')
     }
 
     setCustomMessage(msg: string) {
@@ -121,6 +116,7 @@ export class WcLoginPage extends LitElement {
             saveSession: checkboxGr.modelValue.includes("Yes")
         };
 
+        this.isLoggedIn = true;
         console.log(payload)
 
         /* Send */
@@ -142,7 +138,8 @@ export class WcLoginPage extends LitElement {
     }
 
     render() {
-        return html`
+        const dashboard = html`<wc-dashboard></wc-dashboard>`;
+        const login = html`
         <h3> ${this.welcomeMessage} </h3>
         <h5> ${this.loginMessage} </h5>
 
@@ -176,10 +173,9 @@ export class WcLoginPage extends LitElement {
                 <lion-button id="loginButton" disabled @click="${() => this.login()}">Login</lion-button>
             </form>
         </lion-form>
+    ` ;
+        return this.isLoggedIn ? dashboard : login;
 
-    `;
     }
+
 }
-
-
-// <img id="doggo" src='../assets/doggo-of-security.jpg'>
